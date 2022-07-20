@@ -37,19 +37,18 @@ public class QuestionService {
             private static final long serialVersionUID = 1L;
             @Override
             public Predicate toPredicate(Root<Question> q, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                query.distinct(true);  // 중복을 제거 
+                query.distinct(true); // 중복 제거
                 Join<Question, SiteUser> u1 = q.join("author", JoinType.LEFT);
                 Join<Question, Answer> a = q.join("answerList", JoinType.LEFT);
-                Join<Answer, SiteUser> u2 = a.join("author", JoinType.LEFT);
-                return cb.or(cb.like(q.get("subject"), "%" + kw + "%"), // 제목 
-                        cb.like(q.get("content"), "%" + kw + "%"),      // 내용 
-                        cb.like(u1.get("username"), "%" + kw + "%"),    // 질문 작성자 
-                        cb.like(a.get("content"), "%" + kw + "%"),      // 답변 내용 
-                        cb.like(u2.get("username"), "%" + kw + "%"));   // 답변 작성자 
+                Join<Question, SiteUser> u2 = a.join("author", JoinType.LEFT);
+                return cb.or(cb.like(q.get("subject"), "%" + kw + "%"), // 제목
+                        cb.like(q.get("content"), "%" + kw + "%"), // 내용
+                        cb.like(u1.get("username"), "%" + kw + "%"), // 질문 작성자
+                        cb.like(a.get("content"), "%" + kw + "%"), // 답변 내용
+                        cb.like(u2.get("username"), "%" + kw +"%")); // 답변 작성자
             }
         };
     }
-
     public Page<Question> getList(int page, String kw) {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("createDate"));
