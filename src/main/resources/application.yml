@@ -1,0 +1,29 @@
+spring:
+    # DATABase
+    # h2.console.enable - H2 콘솔의 접속을 허용할지의 여부
+    # h2.consel.path - 콘솔 접속을 위한 URL 경로
+    # datasourece.url - 데이터베이스 접속을 위한 경로
+    # datasource.driverClassName - 
+    # username - 데이터베이스의 사용자명 (기본 값: sa)
+    # password - 데이터베이스의 패스워드 로컬 개발 용도로만 사용하기에 패스워드 설정 안함.
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+    datasource:
+        url: jdbc:h2:~/local
+        driverClassName: org.h2.Driver
+        username: sa
+        password:
+
+    # JPA
+    # jpa.properties.hibernate.dialect - 데이터베이스 엔진 종류 설정
+    # jpa.hinernate.ddl-auto - 엔티티를 기준으로 테이블을 생성하는 규치을 정의
+    jpa:
+        properties:
+            hibernate:
+                format_sql: true
+                dialect: org.hibernate.dialect.H2Dialect
+                show_sql: true
+        hibernate:
+            ddl-auto: update
