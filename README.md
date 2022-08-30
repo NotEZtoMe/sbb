@@ -1,10 +1,10 @@
 # Spring Boot Board
 > 연습용으로 만든 SBB
 
-####URL : http://localhost:8080
+###URL : http://localhost:8080
 [테스트 SBB url](http://localhost:8080)
 
-####sbb/src/main/java/com/mysite/sbb/
+###sbb/src/main/java/com/mysite/sbb/
 
 1. Paging
 1. Question
